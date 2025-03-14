@@ -130,6 +130,8 @@ class DoctrineDatagrid
      */
     protected $managerName = null;
 
+    protected $name;
+
     public function __construct(
         ManagerRegistry $doctrine,
         RequestStack $requestStack,
