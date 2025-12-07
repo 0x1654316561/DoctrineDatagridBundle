@@ -214,7 +214,7 @@ class DoctrineDatagrid
 
     private function isRequestedAction($action)
     {
-        return $this->getRequest()->get(self::ACTION) == $action;
+        return $this->getRequest()->query->get(self::ACTION) == $action;
     }
 
     private function getSessionValue($name, $default = null)
@@ -328,10 +328,10 @@ class DoctrineDatagrid
         if (in_array(
                 $this->getRequest()->getMethod(),
                 array_map('strtoupper', $this->getAllowedFilterMethods())
-            ) && $this->getRequest()->get($this->filter->getForm()->getName())
+            ) && $this->getRequest()->query->get($this->filter->getForm()->getName())
         ) {
             $this->setCurrentPage(1);
-            $data = $this->getRequest()->get($this->filter->getForm()->getName());
+            $data = $this->getRequest()->query->get($this->filter->getForm()->getName());
         } else {
             $data = $this->getSessionValue('filter', $this->getDefaultFilters());
         }
@@ -747,17 +747,17 @@ class DoctrineDatagrid
 
     protected function getRequestedAction($default = null)
     {
-        return $this->getRequest()->get(self::ACTION, $default);
+        return $this->getRequest()->query->get(self::ACTION, $default);
     }
 
     protected function getRequestedDatagrid($default = null)
     {
-        return $this->getRequest()->get(self::ACTION_DATAGRID, $default);
+        return $this->getRequest()->query->get(self::ACTION_DATAGRID, $default);
     }
 
     protected function getRequestedSortColumn($default = null)
     {
-        $requested = $this->getRequest()->get(self::PARAM1, $default);
+        $requested = $this->getRequest()->query->get(self::PARAM1, $default);
 
         // if there is a whitelist, ignore everything that is not in it
         if (null !== $this->allowedSorts && !in_array($requested, $this->allowedSorts)) {
@@ -769,7 +769,7 @@ class DoctrineDatagrid
 
     protected function getRequestedSortOrder($default = null)
     {
-        $requested = strtolower($this->getRequest()->get(self::PARAM2, $default));
+        $requested = strtolower($this->getRequest()->query->get(self::PARAM2, $default));
 
         // if there is a whitelist, ignore everything that is not in it
         if (!in_array($requested, ['asc', 'desc'])) {
@@ -781,34 +781,34 @@ class DoctrineDatagrid
 
     protected function getRequestedSortedColumnRemoval($default = null)
     {
-        return $this->getRequest()->get(self::PARAM1, $default);
+        return $this->getRequest()->query->get(self::PARAM1, $default);
     }
 
     protected function getRequestedPage($default = null)
     {
-        $page = (int) $this->getRequest()->get(self::PARAM1, $default);
+        $page = (int) $this->getRequest()->query->get(self::PARAM1, $default);
 
         return $page > 0 ? $page : $default;
     }
 
     protected function getRequestedNewColumn($default = null)
     {
-        return $this->getRequest()->get(self::PARAM1, $default);
+        return $this->getRequest()->query->get(self::PARAM1, $default);
     }
 
     protected function getRequestedPrecedingNewColumn($default = null)
     {
-        return $this->getRequest()->get(self::PARAM2, $default);
+        return $this->getRequest()->query->get(self::PARAM2, $default);
     }
 
     protected function getRequestedColumnRemoval($default = null)
     {
-        return $this->getRequest()->get(self::PARAM1, $default);
+        return $this->getRequest()->query->get(self::PARAM1, $default);
     }
 
     protected function getRequestedLimit($default = null)
     {
-        return $this->getRequest()->get(self::PARAM1, $default);
+        return $this->getRequest()->query->get(self::PARAM1, $default);
     }
 
     /*********************************/
