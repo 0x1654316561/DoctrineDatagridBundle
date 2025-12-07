@@ -328,10 +328,10 @@ class DoctrineDatagrid
         if (in_array(
                 $this->getRequest()->getMethod(),
                 array_map('strtoupper', $this->getAllowedFilterMethods())
-            ) && $this->getRequest()->query->get($this->filter->getForm()->getName())
+            ) && $this->getRequest()->request->has($this->filter->getForm()->getName())
         ) {
             $this->setCurrentPage(1);
-            $data = $this->getRequest()->query->get($this->filter->getForm()->getName());
+            $data = $this->getRequest()->request->all($this->filter->getForm()->getName());
         } else {
             $data = $this->getSessionValue('filter', $this->getDefaultFilters());
         }
