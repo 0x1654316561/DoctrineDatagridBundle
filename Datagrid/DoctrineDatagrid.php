@@ -970,7 +970,9 @@ class DoctrineDatagrid
 
     public function getBatchData()
     {
-        return (array) json_decode($this->getRequest()->cookies->get($this->name.'_batch'));
+        $json = $this->getRequest()->cookies->get($this->name.'_batch');
+
+        return $json ? (array) json_decode($json) : [];
     }
 
     public function isBatchChecked($identifier): bool

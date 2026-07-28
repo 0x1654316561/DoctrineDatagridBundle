@@ -20,6 +20,10 @@ nbproject
 *.komodoproject
 /.netbeans/
 catalog.xml
+composer.lock
+vendor
 *.psd
 *~
 .htpasswd
+.phpunit.result.cache
+.phpunit.cache
